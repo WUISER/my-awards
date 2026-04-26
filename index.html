@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>曹耀仁的个人荣誉</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: #f5f7fa;
+      display: flex;
+      justify-content: center;
+      padding: 30px 20px;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 600px;
+      width: 100%;
+    }
+
+    /* 个人信息卡片 */
+    .profile {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      padding: 35px 25px;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .avatar {
+      width: 80px; height: 80px;
+      background: #4f6ef7;
+      border-radius: 50%;
+      margin: 0 auto 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 32px;
+      font-weight: bold;
+    }
+    .profile h2 { margin-bottom: 6px; }
+    .profile .subtitle { color: #666; }
+
+    /* 奖项卡片 */
+    .award-card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      margin-bottom: 20px;
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+    .award-card:hover { transform: translateY(-2px); }
+
+    /* 单张大图直接显示（无网格容器） */
+    .award-card > img {
+      width: 100%;
+      display: block;
+      cursor: pointer;
+      max-height: 400px;
+      object-fit: contain;
+      background: #f0f2f5;
+    }
+
+    /* 多图网格容器 */
+    .award-images {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* 两列等宽 */
+      gap: 4px;                              /* 图片间距 */
+      background: #f0f2f5;
+    }
+
+    .award-images img {
+      width: 100%;
+      height: 220px;        /* 固定高度，保持整齐 */
+      object-fit: cover;    /* 裁剪居中，保持统一视觉 */
+      cursor: pointer;
+      display: block;
+    }
+
+    .award-caption {
+      padding: 15px 18px;
+      border-top: 1px solid #f0f0f0;
+    }
+    .award-caption .award-title {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+    .award-caption .award-year {
+      color: #888;
+      font-size: 14px;
+    }
+
+    /* 图片放大遮罩 */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    .lightbox img {
+      max-width: 95%;
+      max-height: 95%;
+      object-fit: contain;
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+      border-radius: 4px;
+    }
+    .footer { text-align: center; margin-top: 30px; color: #aaa; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- 个人头部 -->
+    <div class="profile">
+      <div class="avatar">🏆</div>
+      <h2>曹耀仁</h2>
+      <p class="subtitle">东北大学秦皇岛分校 · 计算机科学与技术 2023届</p>
+    </div>
+
+    <!-- 1. 国家奖学金（单图） -->
+    <div class="award-card">
+      <img src="Picture/国家奖学金.jpg" alt="国家奖学金证书" onclick="openLightbox(this.src)">
+      <div class="award-caption">
+        <div class="award-title">国家奖学金</div>
+        <div class="award-year">2024</div>
+      </div>
+    </div>
+
+    <!-- 2. ICPC上海站（双图） -->
+    <div class="award-card">
+      <div class="award-images">
+        <img src="Picture/上海铜牌1.jpg" alt="2025年ICPC亚洲区域赛（上海站）铜牌" onclick="openLightbox(this.src)">
+        <img src="Picture/上海铜牌2.jpg" alt="2025年ICPC亚洲区域赛（上海站）铜牌" onclick="openLightbox(this.src)">
+      </div>
+      <div class="award-caption">
+        <div class="award-title">2025年ICPC亚洲区域赛（上海站）铜牌</div>
+        <div class="award-year">2025</div>
+      </div>
+    </div>
+
+    <!-- 3. ICPC西安站（单图） -->
+    <div class="award-card">
+      <img src="Picture/西安站.jpg" alt="2025年ICPC亚洲区域赛（西安站）" onclick="openLightbox(this.src)">
+      <div class="award-caption">
+        <div class="award-title">2025年ICPC亚洲区域赛（西安站）</div>
+        <div class="award-year">2025</div>
+      </div>
+    </div>
+
+    <!-- 4. CCPC济南站（双图） -->
+    <div class="award-card">
+      <div class="award-images">
+        <img src="Picture/济南站1.jpg" alt="2025年CCPC亚洲区域赛（济南站）" onclick="openLightbox(this.src)">
+        <img src="Picture/济南站2.jpg" alt="2025年CCPC亚洲区域赛（济南站）" onclick="openLightbox(this.src)">
+      </div>
+      <div class="award-caption">
+        <div class="award-title">2025年CCPC亚洲区域赛（济南站）</div>
+        <div class="award-year">2025</div>
+      </div>
+    </div>
+
+    <!-- 5. 天梯赛（单图） -->
+    <div class="award-card">
+      <img src="Picture/天梯赛.jpg" alt="2026天梯赛国家二等奖" onclick="openLightbox(this.src)">
+      <div class="award-caption">
+        <div class="award-title">2026天梯赛国家二等奖</div>
+        <div class="award-year">2026</div>
+      </div>
+    </div>
+
+    <!-- 6. 睿抗机器人（单图） -->
+    <div class="award-card">
+      <img src="Picture/睿抗机器人开发者大赛全国总决赛.jpg" alt="2025睿抗机器人开发者大赛全国总决赛国家二等奖" onclick="openLightbox(this.src)">
+      <div class="award-caption">
+        <div class="award-title">2025睿抗机器人开发者大赛全国总决赛国家二等奖</div>
+        <div class="award-year">2025</div>
+      </div>
+    </div>
+
+    <!-- 7. 蓝桥杯（单图） -->
+    <div class="award-card">
+      <img src="Picture/2025蓝桥杯全国总决赛.jpg" alt="2025蓝桥杯全国总决赛国家三等奖" onclick="openLightbox(this.src)">
+      <div class="award-caption">
+        <div class="award-title">2025蓝桥杯全国总决赛国家三等奖</div>
+        <div class="award-year">2025</div>
+      </div>
+    </div>
+
+    <!-- 8. 百度之星（双图） -->
+    <div class="award-card">
+      <div class="award-images">
+        <img src="Picture/2025百度之星全国总决赛1.jpg" alt="2025百度之星全国总决赛铜牌" onclick="openLightbox(this.src)">
+        <img src="Picture/2025百度之星全国总决赛2.jpg" alt="2025百度之星全国总决赛铜牌" onclick="openLightbox(this.src)">
+      </div>
+      <div class="award-caption">
+        <div class="award-title">2025百度之星全国总决赛铜牌</div>
+        <div class="award-year">2025</div>
+      </div>
+    </div>
+
+    <!-- 9. 数学建模省级二等奖（单图） -->
+    <div class="award-card">
+      <img src="Picture/全国大学生数学建模竞赛.jpg" alt="2025全国大学生数学建模竞赛省级二等奖" onclick="openLightbox(this.src)">
+      <div class="award-caption">
+        <div class="award-title">2025全国大学生数学建模竞赛省级二等奖</div>
+        <div class="award-year">2025</div>
+      </div>
+    </div>
+
+    <!-- 10. 美赛S奖（单图） -->
+    <div class="award-card">
+      <img src="Picture/美赛.png" alt="2025美国大学生数学建模竞赛S奖" onclick="openLightbox(this.src)">
+      <div class="award-caption">
+        <div class="award-title">2025美国大学生数学建模竞赛S奖</div>
+        <div class="award-year">2025</div>
+      </div>
+    </div>
+
+    <!-- 11. 亚太赛一等奖（单图） -->
+    <div class="award-card">
+      <img src="Picture/亚太赛.png" alt="2024亚太数学建模竞赛一等奖" onclick="openLightbox(this.src)">
+      <div class="award-caption">
+        <div class="award-title">2024亚太数学建模竞赛一等奖</div>
+        <div class="award-year">2024</div>
+      </div>
+    </div>
+
+    <!-- 12. MathorCup（单图） -->
+    <div class="award-card">
+      <img src="Picture/MathorCup.png" alt="2024年第十四届MathorCup数学应用挑战赛分赛区三等奖" onclick="openLightbox(this.src)">
+      <div class="award-caption">
+        <div class="award-title">2024年第十四届MathorCup数学应用挑战赛分赛区三等奖</div>
+        <div class="award-year">2024</div>
+      </div>
+    </div>
+
+    <!-- 13. 数学竞赛决赛（四图） -->
+    <div class="award-card">
+      <div class="award-images">
+        <img src="Picture/全国大学生数学竞赛决赛1.jpg" alt="第十六届全国大学生数学竞赛决赛国家三等奖" onclick="openLightbox(this.src)">
+        <img src="Picture/全国大学生数学竞赛决赛2.jpg" alt="第十六届全国大学生数学竞赛决赛国家三等奖" onclick="openLightbox(this.src)">
+        <img src="Picture/全国大学生数学竞赛决赛3.jpg" alt="第十六届全国大学生数学竞赛决赛国家三等奖" onclick="openLightbox(this.src)">
+        <img src="Picture/全国大学生数学竞赛决赛4.jpg" alt="第十六届全国大学生数学竞赛决赛国家三等奖" onclick="openLightbox(this.src)">
+      </div>
+      <div class="award-caption">
+        <div class="award-title">第十六届全国大学生数学竞赛决赛国家三等奖</div>
+        <div class="award-year">2025</div>
+      </div>
+    </div>
+
+    <!-- 14. 创新创业奖学金（单图） -->
+    <div class="award-card">
+      <img src="Picture/创新创业奖学金.jpg" alt="创新创业奖学金" onclick="openLightbox(this.src)">
+      <div class="award-caption">
+        <div class="award-title">创新创业奖学金</div>
+        <div class="award-year">2023~2027</div>
+      </div>
+    </div>
+
+    <!-- 15. 三好学生（单图） -->
+    <div class="award-card">
+      <img src="Picture/三好生.jpg" alt="三好学生" onclick="openLightbox(this.src)">
+      <div class="award-caption">
+        <div class="award-title">三好学生</div>
+        <div class="award-year">2023~2024</div>
+      </div>
+    </div>
+
+    <div class="footer">扫码查看荣誉详情</div>
+  </div>
+
+  <!-- 点击放大的遮罩层 -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+    // 按ESC键关闭
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+</body>
+</html>
